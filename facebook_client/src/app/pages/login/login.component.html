@@ -1,0 +1,25 @@
+<div class="login" style="z-index: 9999999999999999999;">
+    <div class="container d-flex" style="justify-content: space-around;">
+     <div class="row">
+       <div class="h1 col-md-6"><h1 style="color: #1773ea;">FaceBook</h1><h5>Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</h5></div>
+  <form  class="was-validated col-md-6" [formGroup]="loginForm">
+    <div class="form-group">
+      <label for="">Tên đăng nhập:</label>
+      <input type="text" class="form-control" id="uname" placeholder="VD : ngoc9922" formControlName="username" required>
+      <div class="valid-feedback">Hợp lệ.</div>
+      <div class="invalid-feedback">Điền tên đăng nhập</div>
+    </div>
+    <div class="form-group">
+      <label for="">Mật khẩu:</label>
+      <input type="password" class="form-control" placeholder="VD : 123456789"  formControlName="password" required>
+      <div class="valid-feedback">Hợp lệ.</div>
+      <div class="invalid-feedback">Điền mật khẩu</div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onLogin()" >Đăng Nhập</button>
+    <div type="submit" class="btn btn-primary ml-5"><a style="color: #fff ;  font-size: 16px; cursor: pointer; text-decoration: none;" routerLink="/register">Đăng Ký</a></div>
+
+  </form>
+     </div>
+</div>
+<simple-notifications></simple-notifications>
+</div>

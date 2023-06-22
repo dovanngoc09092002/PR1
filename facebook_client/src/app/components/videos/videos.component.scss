@@ -1,0 +1,20 @@
+i{
+    font-size: 30px;
+    color: #179aec;
+    cursor: pointer;
+    padding: 0px 20px;
+}
+.p-sidebar-bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30rem !important;
+}
+
+.btn_delete{
+    padding: 12px 14px;
+    transition: all 0.2s ease-in;
+}
+.btn_delete:hover{
+    font-size: 25px;
+}

@@ -1,0 +1,15 @@
+<div class="box_friend" style="background-color: #fff; padding: 14px ; margin: 10px 0px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+    <div class="row " style="align-items: center; justify-content: space-between;">
+        <img  class="" style="margin-left: 10px; border-radius: 50%; width: 70px; height: 70px;" [src]="newItem.avatar" alt="">
+        <div *ngIf="newItem && newItem"  class="box_friend_name col-md-4" style="flex: 1;">{{newItem.name}} @{{newItem.username}}</div>
+        <div class="card col-md-4">
+    <p-menubar [model]="items">
+        <!-- <ng-template pTemplate="start">
+            
+        </ng-template> -->
+       
+    </p-menubar>
+</div>
+    </div>
+</div>
+

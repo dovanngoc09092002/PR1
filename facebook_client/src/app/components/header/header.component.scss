@@ -1,0 +1,181 @@
+
+.box_user{
+    // min-width: 300px;
+    // width: 300px;
+    position: absolute;
+    background-color: #ddd;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: left;
+    top: 70px;
+}
+.box_mess{
+   padding: 10px;
+    position: absolute;
+    border: 1px solid #5a9bf0;
+    background-color: #ddd;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: left;
+    top: 70px;
+    span{
+        margin-right: 10px;
+        color: #5a9bf0;
+    }
+}
+
+.box_user_item{
+    color: #333;
+
+    padding: 10px 15px;
+    cursor: pointer;
+    i{
+        color: #1f1d1d;
+        margin-right: 10px;
+    }
+}
+.box_user_item:hover{
+    background: #5a9bf0;
+    color: #ddd;
+    i{
+        color: aliceblue;
+    }
+}
+
+.box_mess_item{
+    padding: 5px 2px;
+    display: flex;
+    // align-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.scroll_box_mess{
+    padding-right: 10px;
+    max-height: 360px;
+    overflow-y: auto;
+}
+.scroll-container {
+  
+  overflow-y: scroll;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #5a9bf0;
+
+
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #5a9bf0;
+
+}
+.box_messagewithfriend{
+    position: fixed;
+    background: #ddd;
+    z-index: 999;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    bottom: 0;
+    right: 100px;
+    span{
+        margin-left: 10px;
+    }
+    i{
+        padding: 5px;
+        cursor: pointer;
+    }
+    .box_messagewithfriend_header{
+        background: #5a9bf0;
+        align-items: center;
+        padding: 5px 5px;
+        color: #ddd;
+    }
+
+    .box_messagewithfriend_body{
+        max-height: 300px;
+        overflow-y: auto;
+        min-height: 300px;
+    }
+
+    .box_messagewithfriend_footer{
+         background: #5a9bf0;
+        align-items: center;
+        padding: 10px 5px;
+        color: #ddd;
+    }
+}
+.iconclose{
+    display: none;
+}
+.thugon{
+    position: fixed;
+    background: #cc1a1a;
+    z-index: 999;
+    bottom: 100px;
+    right: 30px;
+    height: 60px;
+    border-radius: 50%;
+    width: 60px;
+    .iconclose{
+  
+        position: absolute;
+        font-size: 20px;
+        right: 0;
+        font-weight: 600;
+        display: none;
+        cursor: pointer;
+    }
+    .box_messagewithfriend_header{
+        width: 100% !important;
+        height: 100% !important;
+        img{
+            width: 100% !important; 
+            height: 100% !important;
+        }
+        span , div , i {
+            display: none !important;
+           }
+
+    }
+    .box_messagewithfriend_body{
+
+           display: none !important;
+           
+    }
+    .box_messagewithfriend_footer{
+        display: none !important;
+    }
+}
+.thugon:hover{
+    .iconclose{
+        display: block !important;
+    }
+}
+button.p-ripple.p-element.p-button.p-component {
+    margin-top: 10px !important;
+}
+
+.box_goto{
+   position: absolute;
+    background: #20a1ff;
+    top: 0;
+    right: 102%;
+    width: 190px;
+    font-size: 16px;
+   
+    .Item{
+        cursor: pointer;
+        padding: 5px;
+    }
+    .Item:hover{
+           background: #63beff;
+
+    }
+}

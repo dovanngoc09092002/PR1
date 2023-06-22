@@ -1,0 +1,36 @@
+.video{
+    // background: red;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    height: 80vh;
+    i{
+        font-size: 60px;
+        padding  : 0 20px;
+        cursor: pointer;
+        color:rgb(24, 91, 216);
+    }
+    
+    .list_story{
+        background: #5295eb;
+    }
+
+    .view_story{
+        // background: red;
+        background: #dddddd;
+    }
+}
+
+/* Tùy chỉnh kiểu dáng thanh cuộn */
+.overflow-container::-webkit-scrollbar {
+  width: 8px;
+  background-color: #22a3a3;
+}
+
+/* Tùy chỉnh màu sắc thanh cuộn */
+.overflow-container::-webkit-scrollbar-thumb {
+  background-color: #3695ee !important;
+}
+
+/* Tùy chỉnh kiểu dáng khi di chuột vào thanh cuộn */
+.overflow-container::-webkit-scrollbar-thumb:hover {
+  background-color: #338df3;
+}

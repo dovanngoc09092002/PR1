@@ -1,0 +1,13 @@
+.register{
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 99999;
+    max-height: 100vh;
+    align-items: center;
+    display: flex
+}

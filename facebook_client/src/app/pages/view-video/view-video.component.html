@@ -1,0 +1,31 @@
+<div class="video" style="display:  flex;">
+
+    <div class="list_story" style="flex: 1; max-height: 80vh; overflow-y: auto; ; padding-top: 10px;" >
+       <span style="color: #fff; font-weight: 600; font-size: 20px; padding-left: 10px;margin-top: 10px;">Xem tin <i style="font-size: 20px; color: #fff; padding: 0; " class="fa-regular fa-eye"></i></span>
+        <div (click)="handleClick(item)" *ngFor="let item of videos" class=""  style="display: flex; align-items: center; padding: 10px; cursor: pointer;">
+            <img [src]="item.image" style="width: 60px; height:60px ; border-radius: 50%; box-shadow: rgba(125, 176, 235, 0.3) 0px 0px 0px 3px;box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;" alt=""> 
+            <div class="" style="display: inline-block;">
+                <span style="color : #fff ; padding-left: 10px;">{{item.user.name}}</span>
+                <br>
+                 <i style="color: #fff; font-size: 20px;" class="fa-regular fa-eye"></i>
+                
+            </div>
+            
+       
+        </div>
+        
+        
+        
+
+        
+
+    </div>
+    <div class="view_story" style="position: relative; flex: 2; display: flex; align-items: center;">
+        <div class="" (click)="handleClickToLeft()"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="avatar_video" style="position: absolute;left:15% ; top: 10px; z-index: 1;"><img [src]="dataVideo.user.avatar || 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-photo-183042379.jpg'" style="width: 70px; height: 70px; border-radius: 50%; box-shadow: rgba(125, 176, 235, 0.3) 0px 0px 0px 3px;" alt=""> <span style="color : #fff ; padding-left: 10px;">{{dataVideo.user.name}}</span></div>
+     <iframe style="position: relative;" #videoElement width="100%" height="100%" [src]="urlToSafe(dataVideo.video)"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+     
+    <div class="" (click)="handleClickToRight()"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+
+</div>

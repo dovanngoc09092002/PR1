@@ -1,0 +1,9 @@
+<div class="box_user" style="display: flex; padding: 5px 5px; cursor: pointer; align-items: center; width: 250px;" (click)="goToProfile()">
+    <img style="width: 50px; height: 50px; border-radius: 50px;" [src]="item.avatar" alt="">
+    <div class="box_user_name" style="padding-left: 8px;">
+        <span>{{item.name}} </span> <br>
+        <span >@{{item.username}}</span>
+    </div>
+    <span style="flex: 1; text-align: right; "><i class="fa-solid fa-magnifying-glass" style="font-size: 20px; padding-right: 10px;"></i></span>
+
+</div>

@@ -1,0 +1,80 @@
+
+
+    <div class="ks-page-content-body" style="height: 80vh; ">
+        <div class="ks-messenger " style="display: flex;">
+            <div class="ks-discussions" style="flex: 1;">
+                
+                <div class="ks-search">
+                      <span class="p-input-icon-left" style="width: 100%;">
+                             <i class="pi pi-search"></i>
+                             <input type="text" pInputText [(ngModel)]="value" style="width: 90%;" placeholder="Tìm kiếm trong messager" />
+                      </span> 
+                </div>
+                <div class="ks-body ks-scrollable jspScrollable" data-auto-height="" style=" overflow-y: auto; padding: 0px;" tabindex="0">
+
+                   
+                     <div  *ngFor="let i of result"  class="box_mess_item" style="padding-right: 30px;" (click)="gotoMess(i.idFriend)" >
+        <img style="border-radius: 50%; width: 50px; height: 50px; position: relative;" [src]="i.avatar" alt="" >
+
+        <div style="flex: 1; margin-left: 10px; " class="">
+          <span style="font-weight: 600; color: #333; font-size: 16px;">{{i.name}}</span> 
+          <br>
+        <span style="font-size: 14px; color: #555;"><span style="font-weight: 600;">{{i.nameMess}}</span> : {{i.content}}...</span>
+        </div>
+        <div class="" style=" height: 15px; width: 15px; background: #17bd46; border-radius: 50%;"></div>
+        </div>
+                </div>
+            </div>
+
+            <div class="ks-messages ks-messenger__messages" style="flex: 2;">
+                <div class="ks-header" style="
+                 display: flex;
+                 background: #518cf7;
+                 height: 75px;
+                margin-bottom: 15px;">
+                    <img  [src]="friend.avatar" width="60px" height="60px" style="border-radius: 50%; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;" alt="">
+                    <div class="ks-description" style="flex: 1; padding-left: 10px;">
+                        <div class="ks-name" style="color: #fff;">{{friend.name}}</div>
+                    </div>
+                    <div class="icon_messager">
+                        <i class="fa-solid fa-phone" style="font-size: 22px; padding: 10px; color: #f3f3f3; cursor: pointer;"></i>
+
+                        <i class="fa-solid fa-video" style="font-size: 22px; padding: 10px; color: #fdfdfd; cursor: pointer;"></i>
+                        <i class="fa-solid fa-circle-info" style="font-size: 22px; padding: 10px; color: #ffffff; cursor: pointer;"></i>
+
+                    </div>
+                    
+                </div>
+                <div class="ks-body ks-scrollable jspScrollable" data-auto-height="" data-reduce-height=".ks-footer" data-fix-height="32" style="height: 580px; overflow: hidden; padding: 0px; width: 100%;" tabindex="0">
+                    <div class="jspContainer" style="width: 100%; height: 580px;">
+                        <div class="jspPane" style="padding: 0px; top: 0px; width: 100%; height: 100%;  overflow-y: auto;">
+                          <div class="" *ngFor="let item of fullMess">
+      <div *ngIf="!item.isYou" class="" style="padding: 5px; display: flex; align-items: center;">
+      
+        <img style="width: 40px; height: 40px; border-radius: 50%;" [src]="item.avatar" alt="">
+        <span style="font-size: 16px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 5px; border-radius: 12px;">{{item.content}}</span>
+      
+     
+    </div>
+     <div *ngIf="item.isYou" class="" style="text-align:right ; padding: 5px;">
+      <span style="font-size: 16px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 5px; margin-top: 5px ;border-radius: 12px; background: #3783e7; color: #ddd;">{{item.content}}</span>
+      </div>
+    </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="ks-footer" style="display: flex; align-items: center;">
+                    <input type="file" accept="image/*" hidden id="chooseImage">
+                    <label class="icon_mess_ft" for="chooseImage">
+                        <i class="fa-solid fa-image" style="font-size: 30px; color: #179aec; cursor: pointer ; padding: 0px 10px;"></i>
+                    </label>
+                   <input style="flex: 1;"  [(ngModel)]="valueMess" type="text" pInputText  placeholder="Nhập tin nhắn" (keyup)="onKeyUp($event)" />
+                  <i class="fa-solid fa-caret-right" style="font-size: 50px ; color: #179aec; cursor: pointer;" (click)="sendMessageUser()"></i>
+                    
+                </div>
+            </div>
+          
+        </div>
+    </div>
+

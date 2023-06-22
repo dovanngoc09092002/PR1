@@ -1,0 +1,175 @@
+<div class="card rounded" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; padding: 5px 0px; margin: 5px 0px;">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <img class="img-xs rounded-circle" [src]="post.user.avatar" alt="">
+                                    <div class="ml-2">
+                                        <p>{{post.user.name}}</p>
+                                        <p class="tx-11 text-muted">1 min ago</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown" *ngIf="isEditAndDelete">
+                                    <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
+                                            <circle cx="12" cy="12" r="1"></circle>
+                                            <circle cx="19" cy="12" r="1"></circle>
+                                            <circle cx="5" cy="12" r="1"></circle>
+                                        </svg>
+                                    </button>
+                                    <div style="cursor: pointer;"  class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                        <div class="d-flex align-items-center" (click)="showModal2()">
+                                          <i class="fa-solid fa-trash" style="color: #1773ea;"></i>
+                                             <span style="margin-left: 10px;" class="">Xóa</span></div>
+                                        <div class=" d-flex align-items-center" (click)="showModal1()">
+                                            <i class="fa-solid fa-pen-to-square" style="color: #1773ea;"></i>
+                                          
+                                            <span style="margin-left: 10px;" class="">Chỉnh sửa</span></div>
+                                        <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2 icon-sm mr-2">
+                                                <circle cx="18" cy="5" r="3"></circle>
+                                                <circle cx="6" cy="12" r="3"></circle>
+                                                <circle cx="18" cy="19" r="3"></circle>
+                                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                            </svg> <span class="">Share</span></a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg> <span class="">Copy link</span></a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3 tx-14">{{post.postText}}</p>
+                            <img class="img-fluid img-fluid_sub" [src]="post.postImage" alt="">
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex post-actions">
+                                <div href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
+                                        
+                                    </svg>
+                                    <i class="fa-solid fa-heart" [ngClass]="isLike == true ? 'colorRed' : ''" style="font-size: 20px;"></i>
+                                    <p class="d-none d-md-block ml-2 poiter " (click)="likePost()">Thích {{post.likes}}</p>
+                                </div>
+                                <div  class="d-flex align-items-center text-muted mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    <p class="d-none d-md-block ml-2 poiter">
+                                        <span type=""  data-toggle="modal" data-target="#myModal" (click)="setIsView()" >Bình luận</span>
+                                    </p>
+                                </div>
+                                <a href="javascript:;" class="d-flex align-items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share icon-md">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                                    </svg>
+                                    <p class="d-none d-md-block ml-2 poiter">Chia Sẻ</p>
+                                </a>
+                            </div>
+                        </div>
+</div>
+
+   
+
+
+
+  <div  *ngIf="isView"  class="modal" id="myModal" style="align-items: center;" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex" style="height: 60px; align-items: center;">
+                <img style="height: 60px; width: 60px; border-radius: 50%;" [src]="post.user.avatar" alt="">
+                <span style="padding-left: 20px;">{{post.user.name}} <span style="color: #1773ea;">@{{post.user.username}} </span></span>
+            </div>
+          <button type="button" class="close" data-dismiss="modal" (click)="setIsViewFlase()">&times;</button>
+        </div>
+        
+       
+        <div class="modal-body modal_post"  style="max-height: 500px; overflow-y: auto ; z-index: 9999999999999;">
+            <span >{{post.postText}}</span>
+            <img style="width: 100%; padding-top : 10px;" [src]="post.postImage" alt="">
+            <div class="card-footer">
+                            <div class="d-flex post-actions">
+                                <div href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
+                                       
+                                    </svg>
+                                       <i class="fa-solid fa-heart" [ngClass]="isLike == true ? 'colorRed' : ''" style="font-size: 20px;"></i>
+                                    <p class="d-none d-md-block ml-2 poiter"  (click)="likePost()">Thích {{post.likes}}</p>
+                                </div>
+                               
+                                <div href="javascript:;" class="d-flex align-items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share icon-md">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                                    </svg>
+                                    <p class="d-none d-md-block ml-2 poiter">Chia Sẻ</p>
+                                </div>
+                            </div>
+            </div>
+            <span>Bình luận</span>
+            <div class="modal_post_cmts" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; padding-bottom: 5px;" >
+                 <div *ngFor="let comment of comments"  class="modal_post_cmt" style="display: flex; align-items: center; margin: 5px 0px;"> <img style="height: 60px; width: 60px; border-radius: 50%;" [src]="comment.user.avatar" alt=""> 
+                    <div style="padding-left: 10px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 10px 12px; border-radius: 15px;"> <div class="" style="font-weight: 500;">{{comment.user.name}}</div> <div class="">{{comment.commentBody}} </div> </div>
+                 </div>   
+            </div>
+        </div>
+        
+     
+       <div class="modal-footer" >
+       <div class="d-flex" style=" border-top: 1px solid #1773ea; width: 100%; align-items: center; padding-top: 10px; ">
+         <img style="width: 60px; height: 60px; border-radius: 50%; padding: 2px;" [src]="userProfile.avatar" alt="">
+        <input [(ngModel)]="cmt" type="text" style="border: 1px solid #1773ea; outline: none; flex: 1;padding: 5px 10px; height: 45px;">
+        <button (click)="sendMessage()" style="margin: 0px 0px 0px 4px;" class="btn btn-primary" >Bình luận</button>
+       </div>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+<!-- modal chỉnh sửa bài viết  -->
+  <p-dialog header="Chỉnh sửa bài viết" [(visible)]="displayModal1" [modal]="true" >
+  <!-- Nội dung của modal -->
+  <!-- <input type="text" placeholder="Bạn đang nghĩ gì ?" style="width: 300px; padding: 5px 10px; font-size: 16px; outline: none;"> -->
+  <div class="card flex justify-content-center">
+    <textarea rows="1" cols="60" pInputTextarea [(ngModel)]="value"></textarea>
+</div>  
+ <input type="file" name="myImage" accept="image/*" id="chooseImage" (change)="onfileChange($event)" hidden/>
+  <div class="d-flex" style="margin: 10px 0px; width: 100%; min-height: 300px; background: #8c939b; align-items: center; justify-content: center;"> 
+   
+    
+    <img *ngIf="viewImage" style="width: 100%; height: auto; max-height: 400px;" [src]="viewImage" alt="">
+  </div>
+  <label for="chooseImage" class="d-flex" style="width: 100%; background: #aaa;  justify-content: center; padding: 10px;">
+<i *ngIf="isloadding" class="pi pi-spin pi-spinner" style="font-size: 2rem ;"></i>
+      <div *ngIf="noloadding" class="d-flex" style="align-items: center; text-align: center;  color: #1773ea;"> + <i class="fa-solid fa-image" style="font-size: 30px;"></i> </div>
+  </label>
+  <button style="width: 100%; border: none; padding: 10px ; background: #2374e1; color: #ddd; font-size: 18px;" (click)="updatePost()" >Cập nhật</button>
+</p-dialog>
+
+<!-- modal xóa bài viết  -->
+  <p-dialog header="Xóa bài viết" [(visible)]="displayModal2" [modal]="true" >
+  <!-- Nội dung của modal -->
+
+  <div class="" style="text-align: center; font-size: 20px;">
+<!-- <i class="fa-solid fa-circle-info"></i> -->
+      Bạn có chắc chắn muốn xóa bài viết chứ
+      <img [src]="post.postImage" alt="" style="width: 100px; height: 100px;">  
+  </div>
+  <div class="" style="font-size: 14px ; margin: 20px 0px;"> 
+<i class="fa-solid fa-circle-info" style="color:rgb(36, 158, 195)"></i>
+
+     lưu ý khi xóa mọi thông tin về bài viết sẽ được xóa sạch và không thể khôi phục </div>
+<p-button  label="Chắn chắn" (onClick)="deletePost()"></p-button>
+</p-dialog>
+
+<simple-notifications></simple-notifications>
+

@@ -1,0 +1,72 @@
+<!-- <p>listvideo works!</p> -->
+<div class="list_video" style="display: flex; width: 100%;">
+        <div class="create_video" style="width: 16.5%; cursor: pointer;" (click)="showModal()">
+            <img class="img_createVideo" style="width: 100%; height: 150px; position: relative;" [src]="userProfile.avatar" alt="">
+            <div class="icon_createVideo" style="color: #ddd; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-plus " style="margin-right: 5px;"></i> Tạo tin</div>
+        </div>
+        <div class="list_video_content d-flex" style="width: 83.5%;">
+<div class="card">
+    <p-carousel [value]="products" [numVisible]="4" [numScroll]="3" [circular]="false" >
+        <ng-template  let-product pTemplate="item" >
+            <div class="mb-3" style="padding: 0px 4px;" (click)="handleClickViewVideo(product.id)">
+                    <img style="width: 100%; height: 150px; position: relative;" [src]="product.image" [alt]="product.name" class="w-6 shadow-2 imageopacity" />
+                    <div class="" style="position: absolute; height: 40px; width: 40px; top: 0; border-radius: 50%; margin-top: 5px; margin-left: 5px;">
+                        <img style="width: 100%; height: 100%; border-radius: 50%; box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;" [src]="product.user.avatar"  alt="">
+
+                    </div>
+                    <span style="position: relative; top: -28px; z-index: 99; left: 3px; color: #ddd; font-size: 14px;">{{product.user.name}}</span>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+        </div>
+    
+</div>
+
+
+
+<p-dialog header="Đăng Tin" [(visible)]="displayModal" [modal]="true" >
+  <!-- Nội dung của modal -->
+  <!-- <input type="text" placeholder="Bạn đang nghĩ gì ?" style="width: 300px; padding: 5px 10px; font-size: 16px; outline: none;"> -->
+  <!-- <span>Đây là nội dung modal.</span> -->  
+<div class="" style="display: flex;">
+<div class="create_tin_left">
+      <input type="file" name="myImage" accept="video/*" id="choosevideo" (change)="onfileChange($event)" hidden/>
+  <div class="" *ngIf="isVideo">
+
+      <iframe #videoElement [src]="urlSafe" width="300px" height="510px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      
+  </div>
+  <label *ngIf="isCreate"  for="choosevideo" class="createVideo_view" style="height: 510px; width: 300px; display: flex;justify-content: center; align-items: center; cursor: pointer;">
+        <div *ngIf="!isLoadding" class="" style="color: #ddd; font-size: 30px;">
+            <i class="fa-solid fa-plus" style="margin-right: 5px;"></i> <i class="fa-sharp fa-solid fa-video"></i>
+        </div>
+         <div *ngIf="isLoadding" class="" style="color: #ddd; font-size: 30px;">
+            <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        </div>
+  </label>
+</div>
+<div class="create_tin_left">
+      <input type="file" name="myImage" accept="image/*" id="chooseimage" (change)="onfileChange2($event)" hidden/>
+  <div class="" *ngIf="isImage">
+
+      <!-- <iframe #videoElement [src]="urlSafe2" width="300px" height="510px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+      <img [src]="viewImage" alt="" style=" width: 300px; height: 510px;">
+      
+  </div>
+  <label *ngIf="isCreate2"  for="chooseimage" class="createVideo_view" style="height: 510px; width: 300px; display: flex;justify-content: center; align-items: center; cursor: pointer;">
+        <div *ngIf="!isLoadding2" class="" style="color: #ddd; font-size: 30px;">
+            <i class="fa-solid fa-plus" style="margin-right: 5px;"></i> <i class="fa-solid fa-image"></i>
+        </div>
+         <div *ngIf="isLoadding2" class="" style="color: #ddd; font-size: 30px;">
+            <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        </div>
+  </label>
+</div>
+</div>
+  <button [ngClass]="{ 'allow_Create' : isImage && isVideo}" style="width: 100%; border: none; padding: 10px ; background: #354150; 
+     color: #ddd; 
+     font-size: 18px;
+     cursor: not-allowed;" (click)="createVideo()" >Đăng</button>
+</p-dialog>

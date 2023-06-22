@@ -1,0 +1,121 @@
+  <nav style="z-index: 99; background: #f3ebeb; border: none; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; position: fixed; width: 100%;" class="navbar navbar-inverse ">
+  <div class="container-fluid d-flex">
+    <div class="navbar-header">
+      <a style="color: #1773ea; font-weight: 700; font-size: 30px;" class="navbar-brand" routerLink="/">FaceBook</a>
+    </div>
+   
+    <div class=" navbar-left ">
+      <!-- <div class="">
+        <input type="text" class="" placeholder="Tìm kiếm trên facebook">
+        
+      </div> -->
+      <span class="p-input-icon-left">
+<i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" pInputText  placeholder="Tìm kiếm trên facebook" [formControl]="searchValue"/>
+
+    <div *ngIf="listUsers" class="" style="position: fixed; background: #ddd ; margin-top: 5px;  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+      
+      <app-box-user (even) ="ClosoUserBox($event)" *ngFor="let item of listUsers" [item] = "item"></app-box-user>
+     
+    
+    </div>
+
+</span>
+    </div>
+     <ul class="nav flex-grow-1"  style="justify-content: right;">
+<div class="mr-1" style="color: #3985e9 ;width: 50px; height: 50px; font-size: 30px; display: flex; justify-content: center; align-items: center; border: 1px solid  #3985e9; border-radius: 50%;"> <i class="fa-sharp fa-solid fa-envelope"></i> </div>
+
+<div class="mr-1"  (click)="toggleBox1($event)" style=" color: #1773ea ; width: 50px; height: 50px; font-size: 30px; display: flex; justify-content: center; align-items: center; border: 1px solid #3985e9; border-radius: 50%;"> <i class="fa-solid fa-comments"></i> </div>
+<div  class="box_mess" *ngIf="boxVisible1" (click)="onElementClick1($event)">
+    <div class="box_mess-header" style="border-bottom: 1px solid #3985e9; padding-bottom: 10px;">
+      <span><i class="fa-solid fa-magnifying-glass"></i></span> <input type="text" pInputText [(ngModel)]="value" placeholder="Tìm kiếm trong đoạn chat"  style="font-size: 16px; padding: 5px 10px;"/>    </div>
+      <div class="scroll_box_mess scroll-container">
+        <div  *ngFor="let i of result"  class="box_mess_item" (click)="handlClickOpenMessBox(i)">
+        <img style="border-radius: 50%; width: 50px; height: 50px; position: relative;" [src]="i.avatar" alt="" >
+
+        <div style="flex: 1; margin-left: 10px;" class="">
+          <span style="font-weight: 600; color: #333; font-size: 16px;">{{i.name}}</span> 
+          <br>
+        <span style="font-size: 14px; color: #555;"><span style="font-weight: 600;">{{i.nameMess}}</span> : {{i.content}}...</span>
+        </div>
+        <div class="" style=" height: 15px; width: 15px; background: #17bd46; border-radius: 50%;"></div>
+        </div>
+      </div>
+</div>
+
+ <app-box-person (click)="toggleBox($event)" ></app-box-person>
+   <div  class="box_user" *ngIf="boxVisible" (click)="onElementClick($event)">
+      <div class="box_user_item" (click)="toHome()"><i class="fa-solid fa-house"></i> Trang cá nhân</div>
+      <div class="box_user_item" (click)="sidebarVisible2 = true" ><i class="fa-sharp fa-solid fa-key"></i> Đổi mật khẩu</div>
+      <div class="box_user_item" (click)="onlogout()"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</div>
+
+      <!-- <div class="">Trang cá nhân</div> -->
+
+   </div>
+    </ul>
+  </div>
+</nav>
+<!-- <p-avatar size="large" label="User" class="avatar-clickable" (click)="showOverlayPanel()" style="background-color: red; z-index: 9999999999999999999999999999;">úadiaidahisudh</p-avatar> -->
+
+<p-overlayPanel #op>
+    <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg" alt="product" />
+</p-overlayPanel>
+
+
+
+<div [ngClass]="isthugon ? 'thugon' : 'box_messagewithfriend' " *ngIf="isOpenBox" style="max-width: 290px;">
+  <i class="fa-solid fa-xmark iconclose" (click)="handlClickCloseMessBox()" ></i>
+  <div class="box_messagewithfriend_header" style="width: 290px; display: flex;"> 
+    <img style="width: 50px; height: 50px; border-radius: 50%;" [src]="Friend.avatar" alt="" (click)="setisThugon()" > 
+    
+    <div class="box_goto" *ngIf="isOpenGoto">
+
+      <div class="trangcanhan Item" (click)="gotoTrangCaNhan()"><i class="fa-solid fa-house"></i>Trang cá nhân</div>
+      <div class="trangnhantin Item" (click)="gotoMessage()"><i class="fa-solid fa-comments"></i>Mở bằng messager</div>
+
+    </div>
+
+    <span style="flex: 1; cursor: pointer;" (click)="setIsOpenGoto()">{{Friend.name}}</span> 
+    <i class="fa-solid fa-phone" style="font-size: 16px;" ></i>
+ <i class="fa-sharp fa-solid fa-minus" (click)="setisThugon()"></i>
+    <i class="fa-solid fa-xmark" style="font-size: 20px;" (click)="handlClickCloseMessBox()"></i>
+  </div>
+  <div #messageContainer class="box_messagewithfriend_body">
+    <div class="" *ngFor="let item of fullMess">
+      <div *ngIf="!item.isYou" class="" style="padding: 5px; display: flex; align-items: center;">
+      
+        <img style="width: 40px; height: 40px; border-radius: 50%;" [src]="item.avatar" alt="">
+        <span style="font-size: 16px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 5px; border-radius: 12px;">{{item.content}}</span>
+      
+     
+    </div>
+     <div *ngIf="item.isYou" class="" style="text-align:right ; padding: 5px;">
+      <span style="font-size: 16px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; padding: 5px; margin-top: 5px ;border-radius: 12px; background: #3783e7; color: #ddd;">{{item.content}}</span>
+      </div>
+    </div>
+    
+  </div>
+  <div class="box_messagewithfriend_footer" style="display: flex;">
+    <i class="fa-solid fa-image"></i>
+    <i class="fa-solid fa-video"></i>
+    <input type="text" pInputText [(ngModel)]="valueMess" style="padding: 3px 4px; font-size: 16px; margin: 0px 5px;"  (keyup)="onKeyUp($event)"/>
+   <i class="fa-solid fa-caret-right" style="font-size: 30px;" (click)="sendMessageUser()"></i>
+  </div>
+</div>
+
+
+<p-sidebar [(visible)]="sidebarVisible2" position="right">
+   <div class="" style="margin-bottom: 10px;">
+    <h3 style="color: #1773ea;">FaceBook</h3>
+    <label  style="color: #1773ea;" for="">Mật khẩu cũ : </label>
+    <p-password [(ngModel)]="oldpass" [toggleMask]="true"></p-password>
+    <label  style="color: #1773ea;" for="">Mật khẩu mới : </label>
+    <p-password [(ngModel)]="newpass" [toggleMask]="true"></p-password>
+    <br>
+  </div>
+  <p style="font-size: 12px; color: #1773ea;"><span style="color: #ea1745; padding-right: 5px;">Note!</span>{{textMessage}}</p>
+  <p-button label="Cập Nhật" icon="pi pi-check" iconPos="right" style="margin-top: 10px;" (onClick)="updatePassword()"></p-button>
+</p-sidebar>
+
+<!-- <div style="background: red; height: 100px; width: 100px; position: fixed; bottom: 0; right: 0; color: #fff;" >{{searchValue.value}}</div> -->
+

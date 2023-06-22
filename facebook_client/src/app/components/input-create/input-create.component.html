@@ -1,0 +1,32 @@
+<div (click)="showModal()" class="input_create" style=" padding: 10px 20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; cursor: pointer;" >
+    <div class="d-flex" style="align-items: center">
+        <img style="width: 40px; height: 40px; border-radius: 50%;" [src]="userProfile.avatar" alt="">
+   
+        <div class="" style="padding: 10px 12px; background: #dbdde2; flex: 1; border-radius: 25px;"><span style="opacity: 0.5;">Bạn đang nghĩ gì ?</span></div>
+    </div>
+        
+<div class="input_icon d-flex" style="justify-content: space-around;">
+            <span class=""><i class="fa-regular fa-image" style="color: green;"></i> Ảnh </span>
+            <span class=""><i class="fa-solid fa-flag" style="color: rgb(75, 75, 220);"></i> Sự Kiện Trong Đời </span>
+        </div>
+</div>
+
+<!-- <button pButton type="button" label="Mở Modal" (click)="showModal()"></button> -->
+
+<p-dialog header="Tạo bài viết mới" [(visible)]="displayModal" [modal]="true" >
+  <!-- Nội dung của modal -->
+  <!-- <input type="text" placeholder="Bạn đang nghĩ gì ?" style="width: 300px; padding: 5px 10px; font-size: 16px; outline: none;"> -->
+  <div class="card flex justify-content-center">
+    <textarea rows="1" cols="60" pInputTextarea [(ngModel)]="value"></textarea>
+</div>
+  <!-- <span>Đây là nội dung modal.</span> -->
+  
+ <input type="file" name="myImage" accept="image/*" id="chooseImage" (change)="onfileChange($event)" hidden/>
+  <label for="chooseImage" class="d-flex" style="margin: 10px 0px; width: 100%; min-height: 300px; background: #8c939b; align-items: center; justify-content: center; border: 1px solid red;"> 
+    <div *ngIf="noloadding" class="" style="text-align: center; color: #fff;"><i class="fa-solid fa-image" style="font-size: 30px;"></i> <div class=""> + Ảnh </div></div>
+    <i *ngIf="isloadding" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+    <img *ngIf="viewImage" style="width: 100%; height: auto; max-height: 400px;" [src]="viewImage" alt="">
+  </label>
+  <button style="width: 100%; border: none; padding: 10px ; background: #2374e1; color: #ddd; font-size: 18px;" (click)="createPost()" >Đăng</button>
+</p-dialog>
+

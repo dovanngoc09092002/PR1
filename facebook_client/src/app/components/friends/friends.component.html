@@ -1,0 +1,10 @@
+<div class="tatcabanbe">Tất Cả Bạn Bè</div>
+<div class="get_friend" *ngIf="Friends && Friends.length > 0">
+ 
+        <div class="row">
+            <app-box-friend  class="col-md-6" *ngFor="let item of Friends"    [item]="item"></app-box-friend>
+        </div>
+
+
+
+</div>

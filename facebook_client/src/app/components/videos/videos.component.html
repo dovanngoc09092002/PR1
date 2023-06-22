@@ -1,0 +1,45 @@
+<div class="" style="font-size: 20px; padding: 10px 0px 4px 0px; font-weight: 600; color: rgb(37, 97, 226); border-bottom: 2px solid blue; width: 180px; margin-bottom: 20px;">Video của bạn</div>
+
+
+<ng-image-slider *ngIf="objectArray" [images]="objectArray" #nav (imageClick)="handleClickImage($event)"> </ng-image-slider>
+
+
+<p-sidebar [(visible)]="sidebarVisible3" position="top" style="text-align: center; height: 200px; ">
+   
+   <i class="fa-solid fa-pen-to-square" (click)="updateVideo()"></i> (Chỉnh sửa video) <i class="fa-sharp fa-solid fa-trash" (click)="openModal()"></i> (Xóa video)
+</p-sidebar>
+
+<p-sidebar [(visible)]="sidebarVisible" style="width: 500px;">
+       <div class="" >
+       <div class="" style="text-align: center;">
+        <input id="updateThum" accept="image/*"  type="file" hidden (change)="onfileChange($event , 1)" >
+         <input id="updateVideo" accept="video/*"  type="file" hidden (change)="onfileChange($event , 2)" >
+         <i *ngIf="isLoadding1" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <label *ngIf="!isLoadding1" for="">
+         <img [src]="image" alt="" width="100%" height="300px" >
+        </label>
+         <i *ngIf="isLoadding2" class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+
+        <label for="" *ngIf="!isLoadding2">
+          <iframe #videoElement [src]="urlToSafe(video)" width="100%" height="300px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </label>
+        <div class="" style="display: flex; justify-content: center;" >
+         <label for="updateVideo" style="padding:2px 5px;font-size: 20px; color: #179aec;">Video</label>
+         <label for="updateThum" style="padding:2px 5px;font-size: 20px; color: #179aec;">Hỉnh Ảnh </label>
+        </div>
+        <div class="" style="background: #179aec; color: #ddd; font-size: 20px; text-align: center; padding: 10px 0px; cursor: pointer;"  (click)="submitUpdateVideo()"  >CẬP NHẬT</div>
+       </div>
+    
+       </div>
+    </p-sidebar>
+
+
+
+<p-dialog header=" " [(visible)]="visible" [style]="{width: '50vw'}">
+  <div class="" style="text-align: center;">
+   <h1 style="padding: 10px 0px; font-weight: 600;"> Xóa Video </h1>
+  <h3><i class="fa-solid fa-triangle-exclamation"></i> Mọi dữ liệu sẽ bị xóa bỏ và không thể khôi phục</h3>
+  
+  <button class="btn_delete" style="padding: 10px 12px; background: #179aec; color: #ddd; font-weight: 600; font-size: 20px; border: none; outline: none; border-radius: 15px;" (click)="deleteVideo()">XÁC NHẬN</button>
+  </div>
+</p-dialog>
